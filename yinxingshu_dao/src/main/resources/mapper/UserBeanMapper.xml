@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhhy.dao.UserDao">
+  <resultMap id="myuser" type="com.xhhy.bean.UserBean">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_num" jdbcType="VARCHAR" property="userNum" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="mobilephone" jdbcType="VARCHAR" property="mobilephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="login_num" jdbcType="INTEGER" property="loginNum" />
+    <result column="user_del" jdbcType="INTEGER" property="userDel" />
+    <association property="db" javaType="com.xhhy.bean.DeptBean" column="dept_id" select="com.xhhy.dao.DeptDao.getDeptById"></association>
+  </resultMap>
+  <sql id="selectUser">
+  select user_id,dept_id,user_num,login_name,user_name,sex,password,id_card,mobilephone,email,address,addtime,login_num,user_del
+ 	from user_tb
+  </sql>
+  <select id="login" resultMap="myuser">
+  	<include refid="selectUser"/> where login_name = #{ln} and password = #{ps}
+  </select>
+  
+  <update id="updateLoginNum" >
+  	update user_tb set login_num = login_num +1 where user_id = #{userId}
+  </update>
+  
+  <select id="list" resultMap="myuser">
+  	<include refid="selectUser"/>
+  </select>
+</mapper>

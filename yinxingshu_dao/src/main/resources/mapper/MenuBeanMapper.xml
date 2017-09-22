@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhhy.dao.MenuDao">
+  <resultMap id="mymenu" type="com.xhhy.bean.MenuBean">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="parent_menu" jdbcType="INTEGER" property="parentMenu" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="menu_remark" jdbcType="VARCHAR" property="menuRemark" />
+    <result column="menu_state" jdbcType="INTEGER" property="menuState" />
+    <result column="menu_del" jdbcType="INTEGER" property="menuDel" />
+  </resultMap>
+</mapper>
